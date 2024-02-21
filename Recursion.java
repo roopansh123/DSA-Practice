@@ -169,9 +169,9 @@ public class Recursion {
         // printinc(n);
         // System.out.println();
         // printdec(n);
-         System.out.println(fact(10 ));
+        //  System.out.println(fact(32 ));
         // System.out.println(sum(n));
-        // printFibonacci(n);
+        // printFibonacci(80000000);
         // System.out.println(fib(n));
         // System.out.println(issorted(arr, 0));
         // System.out.println(lastocc(arr, 3, 0));

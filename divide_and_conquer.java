@@ -1,5 +1,15 @@
+// import java.util.Arrays;
+
 public class divide_and_conquer {
     public static void printarr(int arr[]){
+        for(int i=0;i<arr.length;i++){
+            System.out.print(arr[i]+" ");
+        }
+        System.out.println();
+
+    }
+
+    public static void printarr(String arr[]){
         for(int i=0;i<arr.length;i++){
             System.out.print(arr[i]+" ");
         }
@@ -82,10 +92,58 @@ public class divide_and_conquer {
         return i;
     }
 
+    public static void mergesort(String arr[],int si, int ei ){
+
+        if(si>=ei){
+            return;
+        }
+
+        int mid=(si+ei)/2;
+        mergesort(arr, si, mid);
+        mergesort(arr, mid+1, ei);
+        merge(arr, si, ei, mid);
+
+    }
+
+    public static void merge(String arr [], int si, int ei , int mid){
+        
+        int i=si;
+        int j=mid+1;
+        int k=0;
+        String[]res=new String[ei-si+1];
+
+        while (i<=mid && j<=ei) {
+            if(arr[i].compareTo(arr[j])<=0){
+                res[k++]=arr[i++];
+            }
+            else{
+                res[k++]=arr[j++];
+            }            
+        }
+
+        while (i<=mid) {
+            res[k++]=arr[i++];
+        }
+
+        while (j<=ei) {
+            res[k++]=arr[j++];            
+        }
+
+        for(k=0, i=si; k<res.length;k++,i++){
+            arr[i]=res[k];
+        }
+
+    }
+
 
     public static void main(String[]args){
-        int arr[]= {6,8,9,4,3,2};
-        quicksort(arr, 0, arr.length-1);
+        // int arr[]= {6,8,9,4,3,2};
+        // quicksort(arr, 0, arr.length-1);
+        // 
+
+        String arr[]={"sun", "earth", "mars","mercury"};
+        mergesort(arr, 0, arr.length-1);
+        // System.out.println(Arrays.toString(arr));
         printarr(arr);
     }
     
