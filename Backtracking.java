@@ -47,18 +47,39 @@ public class Backtracking {
             permutation(ar, fi+1);
             swap(ar, i, fi);
         }
+    }
 
 
+    public static void printca(char ar[][]){
+        int n= ar.length;
+        for(int i=0;i<n;i++){
+            for(int j=0; j<n;j++){
+                System.out.print(ar[i][j]);
+            }
+            System.out.println();
+        }
+    }
+
+
+    public static void nqueen(char ar [][],int n){
 
     }
     public static void main(String []args){
         // int arr[]=new int[5];
         // changearr(arr, 0, 1);
         // printarr(arr);
-
-        String str="abc";
-        permutation(str.toCharArray(), 0);
+        // String str="abc";
+        // permutation(str.toCharArray(), 0);
         // printsubstr(str, "", 0);
+        int n=2;
+        char c[][]= new char[n][n];
+
+        for(int i=0; i<n;i++){
+            for(int j=0;j<n;j++){
+                c[i][j]='.';
+            }
+        }
+
 
     }
     
