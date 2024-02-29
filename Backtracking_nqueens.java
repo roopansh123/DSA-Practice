@@ -1,4 +1,4 @@
-public class Backtracking_2 {
+public class Backtracking_nqueens {
     public static void printboard(char arr[][]){
         int n=arr.length;
         for(int i=0;i<n;i++){
