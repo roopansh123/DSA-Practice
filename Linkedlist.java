@@ -113,10 +113,11 @@ public class Linkedlist {
         ll.addlast(3);
         ll.addlast(4);
         ll.addmid(2, 8);
+        ll.addlast(9);
         ll.printll();
-        System.out.println("Size is  "+ll.size);
-        System.out.println("Removing "+ll.removelast()+" from Linked list;");
-        ll.printll();
-        System.out.println("Size is  "+ll.size);
+        // System.out.println("Size is  "+ll.size);
+        // System.out.println("Removing "+ll.removelast()+" from Linked list;");
+        // ll.printll();
+        // System.out.println("Size is  "+ll.size);
     }
 }
