@@ -106,6 +106,30 @@ public class Linkedlist {
         return val;
     }
 
+    public int itrSearch(int key){
+        Node temp=head;
+        for(int i=0;i<size;i++){
+            if(temp.data==key){
+                return i;
+            }
+            temp=temp.next;
+            
+        }
+        return -1;
+    }
+    public void reverse(){
+        Node prev=null;
+        Node curr = head;
+        Node next;
+        while(curr!=null){
+            next=curr.next;
+            curr.next=prev;
+            prev = curr;
+            curr= next;
+        }
+        head= prev;
+    }
+
     public static void main(String[] args) {
         Linkedlist ll= new Linkedlist();
         ll.addfirst(2);
@@ -119,5 +143,8 @@ public class Linkedlist {
         // System.out.println("Removing "+ll.removelast()+" from Linked list;");
         // ll.printll();
         // System.out.println("Size is  "+ll.size);
+        // System.out.println(ll.itrSearch(2));
+        ll.reverse();
+        ll.printll();
     }
 }
