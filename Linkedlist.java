@@ -130,21 +130,94 @@ public class Linkedlist {
         head= prev;
     }
 
+    public void removeNthfromEnd(int n){
+        int sz=0;
+        Node temp=head;
+        while (temp !=null) {
+            temp=temp.next;
+            sz++;
+        }
+
+        if(n==sz){
+            head=head.next;
+            return;
+        }
+
+        Node prev =head;
+        int i =1;
+        int iToFind = sz-n;
+        while (i<iToFind) {
+            prev=prev.next;
+            i++;
+        }
+        prev.next=prev.next.next;
+        return;
+    }
+
+    public Node findmid(Node head){
+        Node slow = head;
+        Node fast = head;
+        while(fast!= null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow;
+    }
+
+    public boolean checkPalindrome(){
+        if(head==null|| head.next==null){
+            return true;
+        }
+
+        Node mid =findmid(head);
+
+        Node curr= mid;
+        Node prev=null;
+        while (curr!=null) {
+            Node next = curr.next;
+            curr.next =prev;
+            prev = curr;
+            curr = next;
+        }
+        Node right=prev;
+        Node left=head;
+
+
+        while (right!=null) {
+            if(right.data!=left.data){
+                return false;
+            }
+            right=right.next;
+            left=left.next;
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         Linkedlist ll= new Linkedlist();
-        ll.addfirst(2);
-        ll.addfirst(1);
-        ll.addlast(3);
-        ll.addlast(4);
-        ll.addmid(2, 8);
-        ll.addlast(9);
-        ll.printll();
+        // ll.addfirst(2);
+        // ll.addfirst(1);
+        // ll.addlast(3);
+        // ll.addlast(4);
+        // ll.addmid(2, 8);
+       
+        // ll.printll();
         // System.out.println("Size is  "+ll.size);
         // System.out.println("Removing "+ll.removelast()+" from Linked list;");
         // ll.printll();
         // System.out.println("Size is  "+ll.size);
-        // System.out.println(ll.itrSearch(2));
-        ll.reverse();
+        // // System.out.println(ll.itrSearch(2));
+        // ll.reverse();
+        // ll.printll();
+        // ll.removeNthfromEnd(3);
+        // ll.printll();
+        // System.out.println(ll.findmid(head).data);
+        ll.addfirst(1);
+        ll.addfirst(2);
+        ll.addfirst(2);
+        ll.addfirst(1);
+
         ll.printll();
+        // System.out.println( ll.checkPalindrome());
     }
 }
