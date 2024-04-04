@@ -1,3 +1,6 @@
+
+import java.util.*;
+
 public class Greedy{
     public static void main(String[] args) {
 
@@ -87,24 +90,24 @@ public class Greedy{
         // System.out.println(pair);
 
         // // Indian Coins
-        // Integer coins[]= {1,2,5,10,20,50,100,500,2000};
+        Integer coins[]= {1,2,5,10,20,50,100,500,2000};
 
-        // Arrays.sort(coins,Comparator.reverseOrder());
+        Arrays.sort(coins,Comparator.reverseOrder());
         
-        // int count =0;
-        // int amt =590;
-        // ArrayList<Integer> ans = new ArrayList<>();
-        // for(int i =0; i<coins.length; i++){
-        //     if(coins[i]<=amt){
-        //         while (coins[i]<=amt) {
-        //             count++;
-        //             amt-=coins[i];
-        //             ans.add(coins[i]);
-        //         }
-        //     }
-        // }
-        // System.out.println(count);
-        // System.out.println(ans);
+        int count =0;
+        int amt =590;
+        ArrayList<Integer> ans = new ArrayList<>();
+        for(int i =0; i<coins.length; i++){
+            if(coins[i]<=amt){
+                while (coins[i]<=amt) {
+                    count++;
+                    amt-=coins[i];
+                    ans.add(coins[i]);
+                }
+            }
+        }
+        System.out.println(count);
+        System.out.println(ans);
 
         
 
