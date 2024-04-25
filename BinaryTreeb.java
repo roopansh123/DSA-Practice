@@ -175,6 +175,63 @@ public class BinaryTreeb {
         }
         return isSubtree(root.left, subroot) || isSubtree(root.right, subroot);
     }
+
+    public static void Klevel(Node root, int level, int k){
+        if(root == null){
+             return;
+        }
+
+        if (level == k){
+            System.out.print(root.data+" ");
+        }
+
+        Klevel(root.left, level+1, k);
+        Klevel(root.right, level+1, k);
+    }
+
+    public static boolean getpath(Node root, int n1, ArrayList<Node>path){
+        if (root == null) {
+            return false;
+        }
+
+        path.add(root);
+
+        if (root.data== n1) {
+            return true;
+        }
+
+
+        boolean left= getpath(root.left, n1, path);
+        boolean right = getpath(root.right, n1, path);
+
+        if (right|| left) {
+            return true;
+        }
+
+        path.remove(path.size()-1);
+
+        return false;
+
+
+
+    }
+    public static Node lca(Node root, int n1 , int n2){
+        ArrayList<Node> path1 = new ArrayList<>();
+        ArrayList<Node> path2 = new ArrayList<>();
+
+        getpath(root, n1, path1);
+        getpath(root, n2, path2);
+
+        int i=0;
+        for(; i<path1.size()&& i<path2.size();i++){
+            if (path1.get(i)!=path2.get(i)) {
+                break;
+            }
+        }
+
+        Node lca = path1.get(i-1);
+        return lca;
+    }
     public static void main(String[] args) {
         // int nodes[]={1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
         // BinaryTree t = new BinaryTree();
@@ -193,13 +250,23 @@ public class BinaryTreeb {
         root.right.left = new Node(6);
         root.right.right = new Node(7);
 
+        //   1
+        // /   \
+        // 2    3
+        // / \   / \
+        // 4 5   6  7
 
-        Node subRoot = new Node(2);
-        subRoot.left = new Node(5);
-        subRoot.right = new Node(5);
+        // Node subRoot = new Node(2);
+        // subRoot.left = new Node(5);
+        // subRoot.right = new Node(5);
 
 
-        System.out.println(isSubtree(root, subRoot));
+        // System.out.println(isSubtree(root, subRoot));
+
+        // Klevel(root, 1, 2);
+
+
+        System.out.println(lca(root, 4, 5).data);
 
         
     }
