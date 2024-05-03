@@ -57,6 +57,9 @@ public class BST {
         return root;
     }
     public static Node delete(Node root,int val){
+        if (root == null) {
+            return null;
+        }
         if(root.data > val){
             root.left =delete(root.left, val);
         }
@@ -91,7 +94,7 @@ public class BST {
         inorder(root);
         System.out.println();
         // System.out.println(Search(root, 9));
-        delete(root, 1);
+        delete(root, 3);
         System.out.println();
         inorder(root);
 
