@@ -32,7 +32,7 @@ public class BST {
 
     public static Info largestBST(Node root){
         if (root == null) {
-            return new Info(true, 0, Integer.MIN_VALUE, Integer.MAX_VALUE)
+            return new Info(true, 0, Integer.MIN_VALUE, Integer.MAX_VALUE);
         }
         Info leftInfo =largestBST(root.left);
         Info rightInfo =largestBST(root.right);
@@ -40,13 +40,13 @@ public class BST {
         int min= Math.min(root.data,Math.min(leftInfo.min, rightInfo.min));
         int max = Math.max(root.data, Math.max(leftInfo.max,rightInfo.max));
         if (leftInfo.max > root.data || rightInfo.min < root.data ) {
-            return new Info(false, size, min, max)
+            return new Info(false, size, min, max);
         }
         if (leftInfo.isBST && rightInfo.isBST) {
             maxBST = Math.max(maxBST, size);
-            return new Info(true, size, min, max)
+            return new Info(true, size, min, max);
         }
-        return new Info(false, size, min, max)
+        return new Info(false, size, min, max);
 
     }
     public static Node BuildTree(Node root, int x){
@@ -120,7 +120,7 @@ public class BST {
         ArrayList<Integer> inorder= new ArrayList<>();
         getInorder(root, inorder);
 
-        root = createBST(inorder, 0, inorder.size()-1)
+        root = createBST(inorder, 0, inorder.size()-1);
         return root;
 
     }
