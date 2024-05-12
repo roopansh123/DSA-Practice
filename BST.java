@@ -13,6 +13,42 @@ public class BST {
         }
     }
 
+    static class Info{
+        boolean isBST;
+        int size;
+        int min;
+        int max;
+
+        public Info(boolean isBST, int size, int min, int max){
+            this. isBST = isBST;
+            this.size= size;
+            this.max = max;
+        }
+
+    }
+
+    public static int maxBST=0;
+
+
+    public static Info largestBST(Node root){
+        if (root == null) {
+            return new Info(true, 0, Integer.MIN_VALUE, Integer.MAX_VALUE)
+        }
+        Info leftInfo =largestBST(root.left);
+        Info rightInfo =largestBST(root.right);
+        int size = leftInfo.size +rightInfo.size +1;
+        int min= Math.min(root.data,Math.min(leftInfo.min, rightInfo.min));
+        int max = Math.max(root.data, Math.max(leftInfo.max,rightInfo.max));
+        if (leftInfo.max > root.data || rightInfo.min < root.data ) {
+            return new Info(false, size, min, max)
+        }
+        if (leftInfo.isBST && rightInfo.isBST) {
+            maxBST = Math.max(maxBST, size);
+            return new Info(true, size, min, max)
+        }
+        return new Info(false, size, min, max)
+
+    }
     public static Node BuildTree(Node root, int x){
         if (root == null) {
             root = new Node(x);
@@ -60,6 +96,34 @@ public class BST {
         return root;
     }
 
+    public static void getInorder(Node root, ArrayList<Integer>inorder){
+        if (root == null) {
+            return;
+        }
+        getInorder(root.left, inorder);
+        inorder.add(root.data);
+        getInorder(root.right, inorder);
+    }
+    public static Node createBST(ArrayList<Integer>inorder,int st, int end){
+        if (st>end) {
+            return null;
+        }
+        int mid =(st+end)/2;
+        Node root= new Node(inorder.get(mid));
+        root.left= createBST(inorder, st, mid-1);
+        root.right= createBST(inorder, mid+1, end);
+        return root;
+    }
+
+    
+    public static Node BalancedBST(Node root){
+        ArrayList<Integer> inorder= new ArrayList<>();
+        getInorder(root, inorder);
+
+        root = createBST(inorder, 0, inorder.size()-1)
+        return root;
+
+    }
     public static Node delete(Node root,int val){
         
         if(root.data > val){
