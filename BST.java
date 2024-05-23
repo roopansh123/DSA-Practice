@@ -20,9 +20,11 @@ public class BST {
         int max;
 
         public Info(boolean isBST, int size, int min, int max){
-            this. isBST = isBST;
+            this.isBST = isBST;
             this.size= size;
+            this.min =min;
             this.max = max;
+            
         }
 
     }
@@ -32,21 +34,21 @@ public class BST {
 
     public static Info largestBST(Node root){
         if (root == null) {
-            return new Info(true, 0, Integer.MIN_VALUE, Integer.MAX_VALUE);
+            return new Info(true, 0, Integer.MAX_VALUE,Integer.MIN_VALUE );
         }
         Info leftInfo =largestBST(root.left);
         Info rightInfo =largestBST(root.right);
-        int size = leftInfo.size +rightInfo.size +1;
+        int size = leftInfo.size + rightInfo.size +1;
         int min= Math.min(root.data,Math.min(leftInfo.min, rightInfo.min));
         int max = Math.max(root.data, Math.max(leftInfo.max,rightInfo.max));
-        if (leftInfo.max > root.data || rightInfo.min < root.data ) {
+        if (root.data <= leftInfo.max || root.data >= rightInfo.min){
             return new Info(false, size, min, max);
         }
         if (leftInfo.isBST && rightInfo.isBST) {
             maxBST = Math.max(maxBST, size);
             return new Info(true, size, min, max);
         }
-        return new Info(false, size, min, max);
+        return new Info(false, size, min, max);   
 
     }
     public static Node BuildTree(Node root, int x){
@@ -203,23 +205,38 @@ public class BST {
 
 
     public static void main(String[] args) {
-        int arr[]= {8,5,3,1,4,6,10,11,14};
+        // int arr[]= {8,5,3,1,4,6,10,11,14};
         
 
-        Node root= null;
-        for(int i =0; i<arr.length; i++){
-            root = BuildTree(root, arr[i]);
-        }
+        // Node root= null;
+        // for(int i =0; i<arr.length; i++){
+        //     root = BuildTree(root, arr[i]);
+        // }
 
-        // inorder(root);
-        // System.out.println();
-        // delete(root, 1);
-        // System.out.println();
-        // inorder(root);
+        // // inorder(root);
+        // // System.out.println();
+        // // delete(root, 1);
+        // // System.out.println();
+        // // inorder(root);
 
-        // printinRange(root, 5, 12);
-        // root2leaf(root, new ArrayList<>());
-        System.out.println(validBst(root, null, null));
+        // // printinRange(root, 5, 12);
+        // // root2leaf(root, new ArrayList<>());
+        // System.out.println(validBst(root, null, null));
+    
+        // Node root = new Node(50);
+        // root.left = new Node(30);
+        // root.left.left = new Node(5);
+        // root.left.right = new Node(20);
+        // root.right = new Node(60);
+        // root.right.left = new Node(45);
+        // root.right.right = new Node(70);
+        // root.right.right.left = new Node(65);
+        // root.right.right.right = new Node(80);
+
+        // Info info = largestBST(root);
+
+        // System.out.println(maxBST);
+
     }
 
 }
